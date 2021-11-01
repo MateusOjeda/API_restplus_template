@@ -3,7 +3,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class toDoClass:
+class ToDoClass:
     @staticmethod
     def example_method(arg):
         logger.warn(arg)

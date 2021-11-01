@@ -9,7 +9,7 @@ api = Namespace("example", "Rotas de exemplo para o namespace.")
 
 
 @api.route("/<string:key>")
-class routeKey(Resource):
+class RouteKey(Resource):
     @api.doc(responses={200: "Sucesso"}, params={"key": "Key for request."}, security=None)
     def get(self, key):
         return toDoClass.example_method(key)
