@@ -15,12 +15,12 @@ login = api.model(
 
 @api.route("/login")
 class Login(Resource):
-    @api.expect(login)
+    @api.expect(login, validate=True)
     @api.doc(
         responses={
             200: "Success",
+            404: "Unauthorized",
         },
-        security=None,
     )
     def post(self):
         """
@@ -37,4 +37,4 @@ class Login(Resource):
 
         return {
             "username": "USER",
-        }
+        }, 200

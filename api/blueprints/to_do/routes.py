@@ -1,5 +1,5 @@
 from flask_restplus import Resource, Namespace
-from api.blueprints.to_do.services import toDoClass
+from api.blueprints.to_do.services import ToDoClass
 import logging
 from flask_restplus import fields
 
@@ -10,9 +10,12 @@ api = Namespace("example", "Rotas de exemplo para o namespace.")
 
 @api.route("/<string:key>")
 class RouteKey(Resource):
-    @api.doc(responses={200: "Sucesso"}, params={"key": "Key for request."}, security=None)
+    @api.doc(
+        responses={200: "Success"},
+        params={"key": "Key for request."},
+    )
     def get(self, key):
-        return toDoClass.example_method(key)
+        return ToDoClass.example_method(key)
 
 
 serializer_engine = api.model(
@@ -27,13 +30,16 @@ serializer_engine = api.model(
 
 @api.route("/example_post")
 class examplePost(Resource):
-    @api.expect(serializer_engine)
-    @api.doc(responses={200: "Sucesso"}, params={"payload": "Parâmetros post request."}, security=None)
+    @api.expect(serializer_engine, validate=True)
+    @api.doc(
+        responses={200: "Success"},
+        params={"payload": "Parâmetros post request."},
+    )
     def post(self):
         """
         Example Post endpoint
         """
         if api.payload:
-            return toDoClass.example_method(False)
+            return ToDoClass.example_method(False)
         else:
             api.abort(400, "Error on payload.")
