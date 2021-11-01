@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  database_api:
+    build: .
+    restart: always
+    command: gunicorn --bind 0.0.0.0:5002 app:app
+    ports:
+      - 5002:5002

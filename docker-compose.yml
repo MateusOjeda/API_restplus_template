@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  database_api:
+    build: .
+    ports:
+      - 5003:5003
+    entrypoint: [ "python3", "app.py" ]
